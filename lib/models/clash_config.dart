@@ -574,6 +574,8 @@ abstract class PatchClashConfig with _$PatchClashConfig {
     @JsonKey(name: 'external-controller')
     ExternalControllerStatus externalController,
     @Default({}) Map<String, String> hosts,
+    @Default(false) @JsonKey(name: 'geo-auto-update') bool geoAutoUpdate,
+    @Default(24) @JsonKey(name: 'geo-update-interval') int geoUpdateInterval,
   }) = _PatchClashConfig;
 
   factory PatchClashConfig.fromJson(Map<String, Object?> json) =>

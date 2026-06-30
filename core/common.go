@@ -236,7 +236,17 @@ func updateConfig(params *UpdateParams) {
 		general.Tun.Stack = *params.Tun.Stack
 	}
 
+	if params.GeoAutoUpdate != nil {
+		updater.SetGeoAutoUpdate(*params.GeoAutoUpdate)
+	}
+	if params.GeoUpdateInterval != nil {
+		updater.SetGeoUpdateInterval(*params.GeoUpdateInterval)
+	}
+
 	updateListeners()
+	if updater.GeoAutoUpdate() {
+		updater.RegisterGeoUpdaterWithCancel()
+	}
 }
 
 func applyConfig(params *SetupParams) error {

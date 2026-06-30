@@ -445,6 +445,8 @@ _PatchClashConfig _$PatchClashConfigFromJson(Map<String, dynamic> json) =>
             (k, e) => MapEntry(k, e as String),
           ) ??
           const {},
+      geoAutoUpdate: json['geo-auto-update'] as bool? ?? false,
+      geoUpdateInterval: (json['geo-update-interval'] as num?)?.toInt() ?? 24,
     );
 
 Map<String, dynamic> _$PatchClashConfigToJson(_PatchClashConfig instance) =>
@@ -470,6 +472,8 @@ Map<String, dynamic> _$PatchClashConfigToJson(_PatchClashConfig instance) =>
       'external-controller':
           _$ExternalControllerStatusEnumMap[instance.externalController]!,
       'hosts': instance.hosts,
+      'geo-auto-update': instance.geoAutoUpdate,
+      'geo-update-interval': instance.geoUpdateInterval,
     };
 
 const _$ModeEnumMap = {
