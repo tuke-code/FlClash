@@ -554,10 +554,11 @@ func init() {
 			Data: providerName,
 		})
 	}
-	updater.GeoUpdateHook = func(geoType string, updating bool, updateErr error) {
+	updater.GeoUpdateHook = func(geoType string, updating bool, message string, updateErr error) {
 		status := GeoUpdateStatus{
 			Type:     geoType,
 			Updating: updating,
+			Message:  message,
 		}
 		if updateErr != nil {
 			status.Error = updateErr.Error()

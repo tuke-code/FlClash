@@ -133,6 +133,7 @@ const (
 type GeoUpdateStatus struct {
 	Type     string `json:"type"`
 	Updating bool   `json:"updating"`
+	Message  string `json:"message,omitempty"`
 	Error    string `json:"error,omitempty"`
 }
 

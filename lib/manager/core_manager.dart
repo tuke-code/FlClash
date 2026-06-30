@@ -113,12 +113,27 @@ class _CoreContainerState extends ConsumerState<CoreManager>
   }
 
   @override
-  void onGeoUpdate(String geoType, bool updating, String? error) {
+  void onGeoUpdate(
+    String geoType,
+    bool updating,
+    String? message,
+    String? error,
+  ) {
+    final geoResource = GeoResource.fromJson(geoType.toLowerCase());
     final key = GeoResource.fromJson(geoType.toLowerCase()).updatingKey;
+    if (updating) {
+      globalState.showNotifier('${geoResource.name}更新中');
+    } else {
+      if (message != null && message.isNotEmpty) {
+        globalState.showNotifier(message);
+      } else {
+        globalState.showNotifier('${geoResource.name}更新完成');
+      }
+    }
     ref.read(isUpdatingProvider(key).notifier).value = updating;
     if (!updating && error != null && error.isNotEmpty) {
       globalState.showNotifier(error);
     }
-    super.onGeoUpdate(geoType, updating, error);
+    super.onGeoUpdate(geoType, updating, message, error);
   }
 }

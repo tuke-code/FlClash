@@ -15,7 +15,12 @@ abstract mixin class CoreEventListener {
 
   void onCrash(String message) {}
 
-  void onGeoUpdate(String geoType, bool updating, String? error) {}
+  void onGeoUpdate(
+    String geoType,
+    bool updating,
+    String? message,
+    String? error,
+  ) {}
 }
 
 class CoreEventManager {
@@ -45,6 +50,7 @@ class CoreEventManager {
             listener.onGeoUpdate(
               data['type'] as String,
               data['updating'] as bool,
+              data['message'] as String?,
               data['error'] as String?,
             );
             break;
